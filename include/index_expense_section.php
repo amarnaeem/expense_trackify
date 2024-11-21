@@ -111,6 +111,8 @@
                 $ary_total_expense = mysqli_fetch_array($run_total_expense);
 
                 $total_exp = $ary_total_expense['SUM(expense_amount)'];
+                // $total_exp = 300000;
+
 
                 // Select budget
                 $select_budget = "select sum(budget_amount) from budget where category_id='$cat_id' and user_id='$db_user_id'";
@@ -123,7 +125,9 @@
                 if ($total_budget > 0) {
                     $budget_data_available = true;
                     $percentage = $total_exp / $total_budget * 100;
-                    $round_percentage = number_format($percentage, 1);
+
+// $round_percentage = number_format($percentage, 1);
+$round_percentage = number_format($percentage, 1) > 100 ? 101 : number_format($percentage, 1);
             ?>
 
                     <h4 class="small font-weight-bold"><?php echo $cat_name; ?> 

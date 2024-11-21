@@ -91,8 +91,8 @@ include('include/top.php');
                                 $exp_receipt_name = $_FILES['ex_receipt']['name'];
                                 $exp_receipt_tmpname = $_FILES['ex_receipt']['tmp_name'];
 
-                                $exp_year = Date('m');
-                                $exp_month = Date('y');
+                                $exp_year = Date('y');
+                                $exp_month = Date('m');
 
                                 // Extract year and month from the selected date
                                 // $exp_year = date('y', strtotime($exp_date)); 

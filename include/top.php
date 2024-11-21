@@ -15,10 +15,11 @@ else
    $select_user="select * from user where user_email='$user_email'";
    $run_sel=mysqli_query($conn,$select_user);
    $ary_user=mysqli_fetch_array($run_sel);
-
+  
 
    $db_user_id=$ary_user['user_id'];
    $db_user_name=$ary_user['user_name'];
+   $db_user_email=$ary_user['user_email'];
    $bd_user_password= $ary_user['user_pass'];
    $db_user_pic=$ary_user['user_image'];
 }
@@ -40,7 +41,7 @@ else
     
     <link rel="icon" href="logo.png" type="image/x-icon">
 
-    <title>expense manegement system</title>
+    <title>Trakify</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

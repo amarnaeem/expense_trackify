@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-chart-pie"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Expense <sup>APP</sup></div>
+    <div class="sidebar-brand-text mx-3">Trackify <sup>APP</sup></div>
 </a>
 
 <!-- Divider -->
