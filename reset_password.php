@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('include/connectbd.php');
-date_default_timezone_set('UTC');
+// date_default_timezone_set('UTC');
 
 $error_message = "";
 $isTokenValid = false; // Flag to check token validity
@@ -16,10 +16,17 @@ if (isset($_GET['token']) && isset($_GET['email'])) {
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
+    $token_expiration = $row['token_expiration'];
+    
+    echo "Token Expiration Time: " . $token_expiration . " Current Time: " . time() .  " Condition Result: ";
+var_dump(strtotime($token_expiration) > time());
+
+
     // Check if the row exists and if token expiration is valid
     if ($row) {
         $token_expiration = $row['token_expiration'];
-        if ($token_expiration && strtotime($token_expiration) > time()) {
+        // if ($token_expiration && (strtotime($token_expiration) > time())) {
+            if ($token_expiration > time()) {
             $isTokenValid = true;
         } else {
             $error_message = "The reset link has expired.";
@@ -38,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isTokenValid) {
     
     if ($new_password === $confirm_password) {
         $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
-        $sql = "UPDATE user SET user_pass = '$hashed_password', reset_token = NULL, token_expiration = NULL WHERE user_email = '$email'";
+        $sql = "UPDATE user SET user_pass = '$hashed_password', reset_token = NULL, token_expiration = 0 WHERE user_email = '$email'";
         mysqli_query($conn, $sql);
 
         // Set session flag for successful password reset

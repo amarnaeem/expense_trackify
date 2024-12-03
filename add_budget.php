@@ -96,11 +96,13 @@
 
                                 $budget_amount = $_POST['budget_amount'];
                                 $category_id = $_POST['ex_category_id'];
+                                $budget_year = Date('y');
+                                $budget_month = Date('m');
 
 
 
-                                $insert_qry = "insert into budget(category_id,budget_amount,user_id) 
-                          values('$category_id',' $budget_amount','$user_id')";
+                                $insert_qry = "insert into budget(category_id,budget_amount,user_id, budget_month, budget_year) 
+                          values('$category_id',' $budget_amount','$user_id', '$budget_month', '$budget_year')";
 
                                 $runin_qry = mysqli_query($conn, $insert_qry);
 

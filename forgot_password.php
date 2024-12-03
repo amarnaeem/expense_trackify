@@ -2,25 +2,13 @@
 session_start();
 include('include/connectbd.php');
 require 'vendor/autoload.php';
-date_default_timezone_set('UTC');
+// date_default_timezone_set('UTC');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$error = ''; // Define an error variable
+$error = ''; 
 
-// If the session is not set (the page is refreshed), redirect to the login page
-// if (!isset($_SESSION['from_login']) || $_SESSION['from_login'] !== true) {
-//     if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_SESSION['referrer']) && $_SERVER['HTTP_REFERER'] !== "http://localhost/eme/login.php") {
-//         header("Location: login.php");
-//         exit;
-//     }
-// }
-
-// Reset session on successful page load
-// if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['from_login'])) {
-//     unset($_SESSION['from_login']);
-// }
 
 $resetRequested = false;
 
@@ -33,7 +21,7 @@ if (isset($_POST['reset-request'])) {
     if (mysqli_num_rows($result) > 0) {
         $token = bin2hex(random_bytes(16));
         $token_hash = hash("sha256", $token);
-        $expires = date("Y-m-d h:i:s", time() + 1800); // 30-minute expiration
+        $expires = time() + 100;
 
         $sql = "UPDATE user SET reset_token = '$token_hash', token_expiration = '$expires' WHERE user_email = '$user_email'";
         mysqli_query($conn, $sql);

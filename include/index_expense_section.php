@@ -112,10 +112,13 @@
 
                 $total_exp = $ary_total_expense['SUM(expense_amount)'];
                 // $total_exp = 300000;
+                $current_month= Date('m');
+                $current_year= Date('y');
+                //  and budget_year='$current_month' and budget_month='$current_year'
 
 
                 // Select budget
-                $select_budget = "select sum(budget_amount) from budget where category_id='$cat_id' and user_id='$db_user_id'";
+                $select_budget = "select sum(budget_amount) from budget where category_id='$cat_id' and user_id='$db_user_id' and budget_month='$current_month' and budget_year='$current_year'";
                 $run_budget = mysqli_query($conn, $select_budget);
                 $ary_budget = mysqli_fetch_array($run_budget);
 
@@ -132,7 +135,7 @@ $round_percentage = number_format($percentage, 1) > 100 ? 101 : number_format($p
 
                     <h4 class="small font-weight-bold"><?php echo $cat_name; ?> 
                         <span class="float-right">
-                            <span class="text-success">spent: <?php echo $total_exp; ?> |</span>
+                            <span class="text-success">spent: <?php echo $total_exp ?? 0; ?> |</span>
                             <span class="text-danger">Budget: <?php echo $total_budget; ?></span>
                         </span>
                     </h4>
