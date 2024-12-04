@@ -16,10 +16,10 @@ if (isset($_GET['token']) && isset($_GET['email'])) {
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
-    $token_expiration = $row['token_expiration'];
+    // $token_expiration = $row['token_expiration'];
     
-    echo "Token Expiration Time: " . $token_expiration . " Current Time: " . time() .  " Condition Result: ";
-var_dump(strtotime($token_expiration) > time());
+//     echo "Token Expiration Time: " . $token_expiration . " Current Time: " . time() .  " Condition Result: ";
+// var_dump(strtotime($token_expiration) > time());
 
 
     // Check if the row exists and if token expiration is valid
