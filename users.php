@@ -102,18 +102,6 @@ $numrows=mysqli_num_rows($run_users);
                                            
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                             <th>ID</th>
-                                            <th>User Name</th>
-                                            <th>User Email</th>
-                                            <th>User Password</th>
-                                            <th>User Image</th>
-                                            <th>DELETE</th>
-                                            <th>UPDATE</th>
-                                    
-                                        </tr>
-                                    </tfoot>
 
                                     <tbody>
                                         <?php
@@ -121,6 +109,7 @@ $numrows=mysqli_num_rows($run_users);
                                         include('include/connectbd.php');
                                         $select_user="select * from user ";
                                         $run_qry=mysqli_query($conn,$select_user);
+                                        $index = 0;
 
                                        while( $user_array=mysqli_fetch_array($run_qry))
                                        {
@@ -142,10 +131,10 @@ $numrows=mysqli_num_rows($run_users);
                                         ?>
 
                                     <tr>
-                                            <td><?php echo $usr_id; ?></td>
+                                            <td><?php echo ++$index; ?></td>
                                             <td><?php echo ucfirst( $usr_name); ?></td>
                                             <td><?php echo ( $usr_email); ?></td>
-                                            <td><?php echo ( $usr_pass); ?></td>
+                                            <td><?php echo "********"; ?></td>
                                             <td><img src="upload/<?php echo $usr_img ?>" height="60px"></td>
                                             
                                             
@@ -185,7 +174,7 @@ $numrows=mysqli_num_rows($run_users);
    <!--delete btn model td end -->
 
      <!--update btn start -->
-     <td><a href="edit_user.php?edituser=<?php echo  $usr_id; ?>" class="btn btn-success">Update</a></td>                                    
+     <td><a href="edit_user.php?edituser=<?php echo $usr_id; ?>" class="btn btn-success">Update</a></td>                                    
                                         </tr>
                                         <?php }  ?>
                                    

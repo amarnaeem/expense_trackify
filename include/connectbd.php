@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $server = "localhost";
 $username = "root";
 $password = "";
-$mydatabase = "ema";
+$mydatabase = "trackify_db";
 
 $conn = mysqli_connect($server, $username, $password, $mydatabase);
 

@@ -50,19 +50,27 @@
                                                 <?php
                                                 include('include/connectbd.php');
 
-                                                $select_cat = "select * from category where category_purpose = 'expense' AND (user_id = '$user_id' OR user_id IS NULL)";
+                                                // Ensure that $user_id is set correctly
+                                                $user_id = $_SESSION['user_id'];  // Get user ID from the session
+
+                                                $select_cat = "SELECT * FROM category WHERE category_purpose = 'expense' AND (user_id = '$user_id' OR user_id IS NULL)";
                                                 $run_qry = mysqli_query($conn, $select_cat);
 
-                                                while ($get_ary = mysqli_fetch_array($run_qry)) {
-
-                                                    $category_id = $get_ary[0];
-                                                    $category_name = $get_ary[1];
-
+                                                // Check if any categories are returned
+                                                if (mysqli_num_rows($run_qry) > 0) {
+                                                    // Fetch categories and display them in the select dropdown
+                                                    while ($get_ary = mysqli_fetch_array($run_qry)) {
+                                                        $category_id = $get_ary['category_id'];  // Assuming 'category_id' is the column name
+                                                        $category_name = $get_ary['category_name'];  // Assuming 'category_name' is the column name
+                                                ?>
+                                                        <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "<option>No categories found</option>";
+                                                }
                                                 ?>
 
-
-                                                    <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                                                <?php } ?>
                                             </select>
 
                                         </div>
@@ -107,7 +115,7 @@
                                 $runin_qry = mysqli_query($conn, $insert_qry);
 
                                 if ($runin_qry) {
-                                    echo "<div class='alert alert-success'>data insert in DB successfull</div>";
+                                    echo "<div class='alert alert-success'>data inserted Successfull</div>";
                                 } else {
                                     echo "<div class='alert alert-danger'>error</div>";
                                 }

@@ -105,7 +105,7 @@ include('include/top.php');
                                 $runin_qry = mysqli_query($conn, $insert_qry);
 
                                 if ($runin_qry) {
-                                    echo "<div class='alert alert-success'>Data inserted into DB successfully</div>";
+                                    echo "<div class='alert alert-success'>Data inserted successfully</div>";
                                     move_uploaded_file($exp_receipt_tmpname, "upload/$exp_receipt_name");
                                 } else {
                                     echo "<div class='alert alert-danger'>Error occurred while inserting data</div>";
@@ -146,7 +146,7 @@ include('include/top.php');
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>

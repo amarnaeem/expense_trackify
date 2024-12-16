@@ -100,6 +100,7 @@
                                         include('include/connectbd.php');
                                         $select_expense="select * from budget where user_id='$db_user_id'";
                                         $run_qry=mysqli_query($conn,$select_expense);
+                                        $index = 0;
 
                                        while( $budget_array=mysqli_fetch_array($run_qry))
                                        {
@@ -120,7 +121,7 @@
                                         ?>
 
                                     <tr>
-                                            <td><?php echo $budget_id; ?></td>
+                                    <td><?php echo ++$index; ?></td>
                                             <td><?php echo  $cate_name; ?></td>
                                             <td><?php echo $budget_amount; ?></td>
                                            

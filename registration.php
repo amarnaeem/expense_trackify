@@ -21,8 +21,8 @@ if (isset($_POST['user_insert'])) {
         $_SESSION['error_message'] = "Username or Email already exists";
     } else {
         // Insert new user into database
-        $insert_qry = "INSERT INTO user (user_name, user_email, user_pass, user_image, role) 
-                       VALUES ('$u_name', '$u_email', '$secure_password', '$u_img', 'User')";
+        $insert_qry = "INSERT INTO user (user_name, user_email, user_pass, user_image, role, token_expiration) 
+                       VALUES ('$u_name', '$u_email', '$secure_password', '$u_img', 'User', 0)";
         $run_insert = mysqli_query($conn, $insert_qry);
 
         if ($run_insert) {

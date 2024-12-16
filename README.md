@@ -1,65 +1,146 @@
-# [Start Bootstrap - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/)
+# Trackify
 
-[SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/) is an open source admin dashboard theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/).
+Trackify is a comprehensive application designed to manage and track expenses and incomes, providing detailed reports based on user preferences. This README file will guide you through setting up the Trackify application locally using XAMPP.
 
-For the legacy Bootstrap 3 version of this theme, you can view the [last stable release](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/releases/tag/v3.3.7%2B1) of SB Admin 2 for Bootstrap 3.
+## Prerequisites
 
-## Preview
+Before starting, ensure the following prerequisites are met:
 
-[![SB Admin 2 Preview](https://assets.startbootstrap.com/img/screenshots/themes/sb-admin-2.png)](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)
+1. **XAMPP**: Download and install [XAMPP](https://www.apachefriends.org/index.html).
+2. **PHP**: Ensure PHP version 7.4 or higher is installed (included with XAMPP).
+3. **MySQL Database**: XAMPP includes MySQL, which will be used to manage the database.
+4. **Git**: Install Git for version control if you haven't already. [Download Git](https://git-scm.com/).
 
-**[Launch Live Preview](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)**
+---
 
-## Status
+## Steps to Set Up Trackify Locally
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-sb-admin-2/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-sb-admin-2.svg)](https://www.npmjs.com/package/startbootstrap-sb-admin-2)
-[![Build Status](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2.svg?branch=master)](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![dependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![devDependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/dev-status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2?type=dev)
+### Option 1: Clone the Repository Using Git
 
-## Download and Installation
+1. Open your terminal or Git Bash.
+2. Navigate to the `htdocs` directory in your XAMPP installation folder:
+   ```bash
+   cd /path-to-xampp/htdocs
+   ```
+3. Clone the Trackify repository:
+   ```bash
+   git clone https://github.com/yourusername/trackify.git
+   ```
+4. Navigate into the project directory:
+   ```bash
+   cd trackify
+   ```
 
-To begin using this template, choose one of the following options to get started:
+### Option 2: Copy the Folder Directly
 
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/theme/sb-admin-2/)
-* Install via npm: `npm i startbootstrap-sb-admin-2`
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-sb-admin-2)
+1. Download the Trackify project as a ZIP file from the repository (or obtain it directly).
+2. Extract the ZIP file.
+3. Copy the extracted folder into the `htdocs` directory of your XAMPP installation:
+   ```
+   /path-to-xampp/htdocs/trackify
+   ```
 
-## Usage
+---
 
-After installation, run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+### Set Up the Database
 
-### Gulp Tasks
+1. Open XAMPP and start the **Apache** and **MySQL** modules.
+2. Open your browser and go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
+3. Create a new database:
+   - Click on "New" in the left sidebar.
+   - Enter `trackify_db` as the database name.
+   - Choose "utf8mb4_general_ci" as the collation and click "Create."
+4. Import the database schema:
+   - Click on the `project/db/trackify_db` database.
+   - Click "Import" in the top menu.
+   - Click "Choose File," navigate to the `database/trackify.sql` file in the project folder, and click "Go."
 
-* `gulp` the default task that builds everything
-* `gulp watch` browserSync opens the project in your default browser and live reloads when changes are made
-* `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
-* `gulp js` minifies the themes JS file
-* `gulp vendor` copies dependencies from node_modules to the vendor directory
+### Configure Environment Variables
 
-You must have npm installed globally in order to use this build environment. This theme was built using node v11.6.0 and the Gulp CLI v2.0.1. If Gulp is not running properly after running `npm install`, you may need to update node and/or the Gulp CLI locally.
+1. Open the project folder and locate the `config.php` file in the `includes` directory.
+2. Update the following settings:
+   ```php
+   <?php
+   define('DB_HOST', 'localhost');
+   define('DB_USER', 'root');
+   define('DB_PASSWORD', '');
+   define('DB_NAME', 'trackify_db');
+   ?>
+   ```
 
-## Bugs and Issues
+### Run the Application
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](https://startbootstrap.com/theme/sb-admin-2/).
+1. Open your browser and navigate to:
+   ```
+   http://localhost/trackify
+   ```
+2. You should see the Trackify login page. If not, double-check the steps above.
 
-## About
+---
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+## Features
 
-* <https://startbootstrap.com>
-* <https://twitter.com/SBootstrap>
+- **User Authentication**: Register, login, and manage your account securely.
+- **Expense Tracking**: Add, edit, and delete expense records.
+- **Income Tracking**: Add, edit, and delete income records.
+- **Reports**: Generate detailed reports by month, year, or custom date ranges.
+- **Password Reset**: Includes "Forgot Password" and secure password reset functionality.
 
-Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
+---
 
-* <https://davidmiller.io>
-* <https://twitter.com/davidmillerhere>
-* <https://github.com/davidtmiller>
+## Common Issues and Troubleshooting
 
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+### Issue: Unable to Start Apache or MySQL
 
-## Copyright and License
+- Ensure no other applications are using ports 80 or 3306 (e.g., Skype).
+- Update the XAMPP configuration to use alternative ports if needed.
 
-Copyright 2013-2021 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE) license.
+### Issue: Database Connection Error
+
+- Double-check the credentials in `config.php`.
+- Ensure the `trackify_db` database is created and imported correctly.
+
+### Issue: Blank Page or Errors on Load
+
+- Enable error reporting by updating `php.ini` in the XAMPP installation folder:
+   ```ini
+   display_errors = On
+   display_startup_errors = On
+   ```
+- Restart Apache after making changes.
+
+---
+
+## Folder Structure
+
+```
+trackify/
+├── database/           # Database dump files
+├── includes/           # PHP configuration and utility scripts
+├── public/             # Frontend assets (CSS, JS, images)
+├── views/              # HTML and PHP files for views
+├── index.php           # Main entry point
+├── config.php          # Database configuration
+└── README.md           # Documentation
+```
+
+---
+
+## Future Enhancements
+
+- API support for mobile integration.
+- Advanced analytics and visualization.
+- Multi-user and role-based access.
+
+---
+
+## Contribution
+
+Feel free to contribute to Trackify by submitting issues or creating pull requests. Follow the repository's contribution guidelines.
+
+---
+
+## License
+
+Trackify is licensed under the [MIT License](LICENSE).
+

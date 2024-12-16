@@ -92,6 +92,7 @@
                                                 include('include/connectbd.php');
                                                 $select_income = "select * from income where user_id='$db_user_id'";
                                                 $run_qry = mysqli_query($conn, $select_income);
+                                                $index = 0;
 
                                                 while ($income_array = mysqli_fetch_array($run_qry)) {
 
@@ -111,7 +112,7 @@
                                                     $cat_name = $select_ary['1'];
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $incm_id; ?></td>
+                                                    <td><?php echo ++$index; ?></td>
                                                         <td><?php echo ucfirst($incm_amount); ?></td>
                                                         <td><?php echo ucfirst($cat_name); ?></td>
                                                         <td>

@@ -83,6 +83,7 @@
                                                 <?php
                                                 $select_expense = "SELECT * FROM expense WHERE user_id = '$db_user_id' OR user_id IS NULL";
                                                 $run_qry = mysqli_query($conn, $select_expense);
+                                                $index = 0;
 
                                                 while ($expense_array = mysqli_fetch_array($run_qry)) {
                                                     $exp_id = $expense_array['0'];
@@ -99,7 +100,7 @@
 
                                                     echo "
                                                         <tr>
-                                                            <td>{$exp_id}</td>
+                                                           <td>" . ++$index . "</td> 
                                                             <td>" . ucfirst($exp_amount) . "</td>
                                                             <td>" . ucfirst($cate_name) . "</td>
                                                             <td>" . ucfirst($exp_detail) . "</td>
